@@ -1,3 +1,4 @@
+package conwaygame;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package creatures;
+package conwaygame.creatures;
 
 public class DefaultCreature extends AbstractCreature {
 
@@ -6,7 +6,7 @@ public class DefaultCreature extends AbstractCreature {
         return 2;
     }
 
-    public int getMaxNeighbors() {
+    public int getMaxNeighbours() {
         return 3;
     }
 
