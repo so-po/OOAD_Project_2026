@@ -2,15 +2,15 @@ package conwaygame.creatures;
 
 public class DefaultCreature extends AbstractCreature {
 
-    public int getMinimumNeighbours() {
+    int getMinimumNeighbours() {
         return 2;
     }
 
-    public int getMaxNeighbours() {
+    int getMaxNeighbours() {
         return 3;
     }
 
-    public int getResurrectionNeighbourCount() {
+    int getResurrectionNeighbourCount() {
         return 3;
     }
 

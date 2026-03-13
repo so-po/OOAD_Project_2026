@@ -2,15 +2,15 @@ package conwaygame.creatures;
 
 public class ScarcityCreature extends AbstractCreature {
 
-    public int getMinimumNeighbours() {
+    int getMinimumNeighbours() {
         return 1;
     }
 
-    public int getMaxNeighbours() {
+    int getMaxNeighbours() {
         return 2;
     }
 
-    public int getResurrectionNeighbourCount() {
+    int getResurrectionNeighbourCount() {
         return 1;
     }
 

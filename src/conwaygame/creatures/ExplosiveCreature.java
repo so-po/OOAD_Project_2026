@@ -2,15 +2,15 @@ package conwaygame.creatures;
 
 public class ExplosiveCreature extends AbstractCreature {
 
-    public int getMinimumNeighbours() {
+    int getMinimumNeighbours() {
         return 0;
     }
 
-    public int getMaxNeighbours() {
+    int getMaxNeighbours() {
         return 5;
     }
 
-    public int getResurrectionNeighbourCount() {
+    int getResurrectionNeighbourCount() {
         return 1;
     }
 
