@@ -4,9 +4,10 @@ import javax.swing.*;
 
 public class GridMain {
     public static void main(String[] args) throws Exception {
-        //adapted from https://web.archive.org/web/20130224053924/https://www.newthinktank.com/2013/02/mvc-java-tutorial/
 
-        //make two hardcoded creatures in 2x1 grid and monitor if they're alive or not, turn by turn
+        //make three hardcoded creatures in 2x2 grid and monitor if they're alive or not, turn by turn
+        //(adapted from https://web.archive.org/web/20130224053924/https://www.newthinktank.com/2013/02/mvc-java-tutorial/)
+
 
         /*
         model view controller reference:
@@ -16,9 +17,11 @@ public class GridMain {
         */
 
         GridViewer gridViewer = new GridViewer();
-        Grid grid = new Grid(2, 1);
+        Grid grid = new Grid(2, 2);
         grid.makeCellAlive(0, 0);
         grid.makeCellAlive(1, 0);
+        grid.makeCellAlive(1, 1);
+
         GridController gridController = new GridController(grid, gridViewer);
         gridViewer.setVisible(true);
 

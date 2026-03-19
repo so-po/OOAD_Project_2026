@@ -32,6 +32,18 @@ public class GridController {
                 gridViewer.setAliveStatus2("Dead");
             }
 
+            if (gridModel.isCellAlive(0, 1)) {
+                gridViewer.setAliveStatus3("Alive");
+            } else {
+                gridViewer.setAliveStatus3("Dead");
+            }
+
+            if (gridModel.isCellAlive(1, 1)) {
+                gridViewer.setAliveStatus4("Alive");
+            } else {
+                gridViewer.setAliveStatus4("Dead");
+            }
+
             gridModel.playTurn();
 
         }
