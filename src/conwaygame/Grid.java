@@ -98,7 +98,7 @@ public class Grid {
         return count;
     }
 
-    private boolean isCellAlive(int x, int y) {
+    public boolean isCellAlive(int x, int y) {
         return cellExists(x, y) && getCell(x, y).isAlive();
     }
 
