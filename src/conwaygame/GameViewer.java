@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 public class GameViewer extends JFrame {
 
     GamePanel gamePanel;
-    JButton makeCell1AliveButton = new JButton("make cell 1 alive");
+    JLabel xCoordLabel = new JLabel("x: ");
+    JTextField xCoordInput = new JTextField();
+    JLabel yCoordLabel = new JLabel("y: ");
+    JTextField yCoordInput = new JTextField();
+    JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton playTurnButton = new JButton("play a turn");
 
     public GameViewer() {
@@ -18,7 +22,11 @@ public class GameViewer extends JFrame {
         JPanel mainPanel = new JPanel();
         gamePanel = new GamePanel();
         mainPanel.add(gamePanel);
-        mainPanel.add(makeCell1AliveButton);
+        mainPanel.add(xCoordLabel);
+        mainPanel.add(xCoordInput);
+        mainPanel.add(yCoordLabel);
+        mainPanel.add(yCoordInput);
+        mainPanel.add(toggleCellStateButton);
         mainPanel.add(playTurnButton);
         this.add(mainPanel);
         this.pack();
@@ -27,26 +35,30 @@ public class GameViewer extends JFrame {
         this.setVisible(true);
     }
 
-    public void addMakeCell1AliveListener(ActionListener actionListener){
-        makeCell1AliveButton.addActionListener(actionListener);
+    public void toggleCellStateListener(ActionListener actionListener){
+        toggleCellStateButton.addActionListener(actionListener);
     }
 
     public void addPlayTurnListener(ActionListener actionListener) {
         playTurnButton.addActionListener(actionListener);
     }
 
-    public void makeCell1Alive() {
-        this.gamePanel.cell1Alive = true;
+    public void setCellState(int x, int y, boolean alive) {
+        if (x == 0 && y == 0) { //not my finest moment
+            this.gamePanel.cell1Alive = alive;
+        } else if (x==1 && y == 0) {
+            this.gamePanel.cell2Alive = alive;
+        } else if (x==0 && y ==1) {
+            this.gamePanel.cell3Alive = alive;
+        } else if (x ==1 && y==1) {
+            this.gamePanel.cell4Alive = alive;
+        }
         this.repaint();
     }
 
-    public void makeCell1Dead() {
-        this.gamePanel.cell1Alive = false;
-        this.repaint();
-    }
 
 
-    public class GamePanel extends JPanel{
+    class GamePanel extends JPanel{
 
         //SCREEN SETTINGS
         final int originalTileSize = 16; //16x16 sprite size
@@ -58,6 +70,9 @@ public class GameViewer extends JFrame {
         final int screenWidth = tileSize * maxScreenCol;
         final int screenHeight = tileSize * maxScreenRow;
         boolean cell1Alive = false;
+        boolean cell2Alive = false;
+        boolean cell3Alive = false;
+        boolean cell4Alive = false;
 
         Thread gameThread;
 
@@ -67,29 +82,42 @@ public class GameViewer extends JFrame {
             this.setDoubleBuffered(true);
         }
 
-        public void update(){
-
-        }
-
         public void paintComponent(Graphics g){
             super.paintComponent(g);
 
             int origin = 100;
             Graphics g2 = (Graphics2D)g;
 
-            g2.setColor(Color.red);
 
             if (cell1Alive) {
                 g2.setColor(Color.green);
+            } else {
+                g2.setColor(Color.red);
             }
 
             g2.fillRect(origin,origin,tileSize, tileSize);
 
-            g2.setColor(Color.red);
+            if (cell2Alive) {
+                g2.setColor(Color.green);
+            } else {
+                g2.setColor(Color.red);
+            }
 
             g2.fillRect(origin+tileSize,origin,tileSize, tileSize);
 
+            if (cell3Alive) {
+                g2.setColor(Color.green);
+            } else {
+                g2.setColor(Color.red);
+            }
+
             g2.fillRect(origin,origin+tileSize,tileSize, tileSize);
+
+            if (cell4Alive) {
+                g2.setColor(Color.green);
+            } else {
+                g2.setColor(Color.red);
+            }
 
             g2.fillRect(origin+tileSize,origin+tileSize,tileSize, tileSize);
 

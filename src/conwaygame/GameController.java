@@ -12,11 +12,22 @@ public class GameController {
         this.gridModel = model;
         this.view = view;
 
-        this.view.addMakeCell1AliveListener(new ActionListener() {
+        this.view.toggleCellStateListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gridModel.makeCellAlive(0, 0);
-                view.makeCell1Alive();
+                int x, y;
+                try {
+                    x = Integer.parseInt(view.xCoordInput.getText());
+                    y = Integer.parseInt(view.yCoordInput.getText());
+                } catch (NumberFormatException ex) {
+                    return; //just ignore incorrect input for now
+                }
+                gridModel.toggleCellState(x, y);
+                if (gridModel.isCellAlive(x, y)) {
+                    view.setCellState(x, y, true);
+                } else {
+                    view.setCellState(x, y, false);
+                }
             }
         });
 
@@ -24,11 +35,11 @@ public class GameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gridModel.playTurn();
-                if (gridModel.isCellAlive(0, 0)) {
-                    view.makeCell1Alive();
-                } else {
-                    view.makeCell1Dead();
-                }
+                view.setCellState(0, 0, gridModel.isCellAlive(0, 0));
+                view.setCellState(0, 1, gridModel.isCellAlive(0, 1));
+                view.setCellState(1, 0, gridModel.isCellAlive(1, 0));
+                view.setCellState(1, 1, gridModel.isCellAlive(1, 1));
+
             }
         });
     }

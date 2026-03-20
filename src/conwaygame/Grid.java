@@ -46,6 +46,18 @@ public class Grid {
     }
 
 
+    public void toggleCellState(int x, int y) {
+        if (cellExists(x, y)) {
+            AbstractCreature cell = getCell(x, y);
+            if (cell.isAlive()) {
+                cell.kill();
+            } else {
+                cell.resurrect();
+            }
+        }
+    }
+
+
     // for manually editing the grid before the game starts:
     public void makeCellAlive(int x, int y) {
         //set the cell to a default, alive cell
