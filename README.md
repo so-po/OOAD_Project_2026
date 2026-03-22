@@ -11,7 +11,7 @@ Conway's game of life original rules:
 Design Patterns:
 - Template Pattern: AbstractCreature checkNeighborsAndSetState algorithm
 - Factory Pattern: Creature factory
-- Model View Control Pattern: Model - Grid. Controller - Game. View - GamePanel
+- Model View Control Pattern: Model - Grid. Controller - GameController. View - GameViewer
 
 
 model view controller reference:

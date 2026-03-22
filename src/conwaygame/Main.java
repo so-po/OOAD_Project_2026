@@ -6,9 +6,7 @@ public class Main {
 
         GameViewer gameViewer = new GameViewer();
         Grid grid = new Grid(2, 2);
-        Game game = new Game(grid, gameViewer);
-
-        gameViewer.play();
+        GameController game = new GameController(grid, gameViewer);
 
     }
 }
