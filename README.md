@@ -2,22 +2,43 @@
 
 Group Members: Melanie Porter & Sofia Poulsen
 
+# Mid-Project Review Requirements:
+
+Design Patterns:
+1. **Template Pattern:** We have several different types of creatures 
+that follow almost exactly the same algorithm, with only adjustments to the logic. 
+As such, we created an `AbstractCreature` superclass for all the creatures, who has a final `checkNeighborsAndSetState` function that uses the 
+abstract `getMinimumNeighbours` and `getMaxNeighbours` hooks to define the logic that differs for each creature. 
+In the future, we may further add  variation to the algorithm by changing whether 
+each creature type considers other creature types to be valid 'alive' neighbours.
+
+2. **Factory Pattern:** For looser coupling, the `Grid` class uses a creature factory to generate different types of creatures.
+3. **Model View Control Pattern:** As we have a UI and a backend that need to send each other messages back and forth, we used an MVC pattern for this. 
+   - The `Grid` class acts as the **Model** and makes decisions about the simulation's logic as well as stores its data. 
+   - The `GameViewer` acts as the **Viewer** and is a Swing UI for the simulation and allows the user to edit the cell states and advance the simulation. 
+   - The `GameController` acts as the **Controller**. It defines actions for when the buttons are pressed in the viewer. These actions ask the model to perform certain actions, and then updates the viewer accordingly.
+
+OO Principle Examples: 
+- Polymorphism: There are several different types of creatures that inherent from an `AbstractCreature` (DefaultCreature, ExplosiveCreature and ScarcityCreature). Only the DefaultCreature is used for now, but we plan to use all of them.
+- Dependency Injection: The `GameController` takes in a view and a model.
+Currently, it's very tightly coupled with the `Grid` and `GameViewer` classes, but we plan to make an interface for the gameviewer to generalize that a bit more and add the possibility of different UI's for the game.
+
+Test Cases: [GridTest.java](test/conwaygame/GridTest.java)
+
+# Reference:
+
+Questions we have:
+- how to instantiate both gameviewer and grid with the grid size?
+- which class should run the game? Should that be the controller, or the model?
+
+
+Model view controller reference:
+- https://www.geeksforgeeks.org/system-design/mvc-design-pattern/
+- https://www.youtube.com/watch?v=dTVVa2gfht8
+- https://web.archive.org/web/20130726050302/https://www.newthinktank.com/2013/02/mvc-java-tutorial/
+
 Conway's game of life original rules:
 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
 2. Any live cell with two or three live neighbours lives on to the next generation.
 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-
-Design Patterns:
-- Template Pattern: AbstractCreature checkNeighborsAndSetState algorithm
-- Factory Pattern: Creature factory
-- Model View Control Pattern: Model - Grid. Controller - GameController. View - GameViewer
-
-Questions we have:
-- how to instantiate both gameviewer and grid with the grid size? 
-- which class should run the game? Should that be the controller, or the model?
-
-model view controller reference:
-- https://www.geeksforgeeks.org/system-design/mvc-design-pattern/
-- https://www.youtube.com/watch?v=dTVVa2gfht8
-- https://web.archive.org/web/20130726050302/https://www.newthinktank.com/2013/02/mvc-java-tutorial/
