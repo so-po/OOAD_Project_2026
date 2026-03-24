@@ -2,6 +2,8 @@
 
 Group Members: Melanie Porter & Sofia Poulsen
 
+This project is conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
+
 # Mid-Project Review Requirements:
 
 Design Patterns:
@@ -28,8 +30,14 @@ Test Cases: [GridTest.java](test/conwaygame/GridTest.java)
 # Reference:
 
 Questions we have:
-- how to instantiate both gameviewer and grid with the grid size?
-- which class should run the game? Should that be the controller, or the model?
+1. how to instantiate both gameviewer and grid with the grid size?
+   - have a wrapper for the controller, viewer, and model that takes in inputs about how the game should be instantiated (this isn't a big problem)
+2. which class should run the game? Should that be the controller, or the model?
+   - for now, maybe just let the user edit the grid when the game is not playing, and then improve on this if needed
+3. what to do for the fourth pattern
+   - maybe have a singleton class that keeps track of game info like grid size
+   - maybe use the builder pattern for problem # 1 for creating the grid
+   - strategy pattern for class of other creatures that follows a different?
 
 
 Model view controller reference:
