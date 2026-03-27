@@ -1,4 +1,4 @@
-package conwaygame;
+package conwaygame.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +14,13 @@ public class GameViewer extends JFrame {
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
 
-    public GameViewer() {
+    public GameViewer(int width, int height) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setTitle("Conway's Game of Life");
 
         JPanel mainPanel = new JPanel();
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(width, height);
         mainPanel.add(gamePanel);
         mainPanel.add(xCoordLabel);
         mainPanel.add(xCoordInput);
@@ -32,7 +32,6 @@ public class GameViewer extends JFrame {
         this.pack();
 
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     public void toggleCellStateListener(ActionListener actionListener){
@@ -76,7 +75,7 @@ public class GameViewer extends JFrame {
 
         Thread gameThread;
 
-        public GamePanel(){
+        public GamePanel(int width, int height){
             this.setPreferredSize(new Dimension(screenWidth, screenHeight));
             this.setBackground(Color.black);
             this.setDoubleBuffered(true);

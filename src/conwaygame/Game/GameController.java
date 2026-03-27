@@ -1,4 +1,4 @@
-package conwaygame;
+package conwaygame.Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

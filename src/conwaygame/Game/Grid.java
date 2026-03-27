@@ -1,4 +1,4 @@
-package conwaygame;
+package conwaygame.Game;
 
 import conwaygame.creatures.AbstractCreature;
 import conwaygame.creatures.CreatureFactory;

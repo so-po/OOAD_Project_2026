@@ -1,5 +1,5 @@
 package conwaygame;
-import conwaygame.creatures.AbstractCreature;
+import conwaygame.Game.Grid;
 import org.junit.jupiter.api.Test;
 
 public class GridTest {
