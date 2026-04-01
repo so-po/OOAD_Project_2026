@@ -4,6 +4,19 @@ Group Members: Melanie Porter & Sofia Poulsen
 
 This project is conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
 
+# TODO: 
+
+**MVP:**
+- [ ] Logic: Figure out why GameController thread only works when printing text. (???)
+- [ ] UI: Create an actual grid UI
+- [ ] Design: Create a wrapper for the ConwayGame, GameController and GameViewer
+- [ ] Logic: Add different types of creatures to the grid
+- [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
+
+**Stretch Goals:** 
+- [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
+- [ ] UI: Replace the text entry x, y coordinates to edit cells with being able to click on the grid 
+
 # Mid-Project Review Requirements:
 
 Design Patterns:
