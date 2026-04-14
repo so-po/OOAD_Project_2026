@@ -12,11 +12,12 @@ public class Grid {
     final int GRID_ROWS;
 
     AbstractCreature[][] cells;
-    CreatureFactory creatureFactory = new CreatureFactory();
     Random random;
 
 
-    public Grid(int width, int height) throws Exception {
+    ///  ======== GRID CONSTRUCTION ========
+
+    public Grid(int width, int height, CreatureFactory creatureFactory) throws Exception {
 
         if (width <= 0 || height <= 0) {
             throw new Exception("Bad grid width & height input.");
@@ -36,13 +37,47 @@ public class Grid {
 
     }
 
+    public static GridBuilder getNewBuilder(CreatureFactory creatureFactory) {
+        return new GridBuilder(creatureFactory);
+    }
+
+    public static class GridBuilder {
+        CreatureFactory creatureFactory;
+        int gridWidth;
+        int gridHeight;
+
+
+        public GridBuilder(CreatureFactory creatureFactory) {
+            this.creatureFactory = creatureFactory;
+        }
+
+        public GridBuilder setDimensions(int x, int y) {
+            this.gridWidth = x;
+            this.gridHeight = y;
+            return this;
+        }
+
+        public Grid build() throws Exception {
+            return new Grid(gridWidth, gridHeight, creatureFactory);
+            //TODO: if dimensions not set, make dimensions based on the existing cells
+        }
+
+    }
+
+    /// ======== GRID LOGIC ========
+
     private AbstractCreature getCell(int x, int y) {
         return cells[y][x];
     }
 
     public void makeRandomCellAlive() {
-        //TODO: prevent duplicate placement.
-        makeCellAlive(random.nextInt(GRID_ROWS -1), random.nextInt(GRID_COLUMNS -1));
+        //TODO: prevent duplicate placement. Loop through & stop loop if grid is full
+        int chosenx = random.nextInt(GRID_ROWS -1);
+        int choseny = random.nextInt(GRID_COLUMNS -1);
+
+        if (cellExists(chosenx, choseny)) {
+            makeCellAlive(chosenx, choseny);
+        }
     }
 
 
