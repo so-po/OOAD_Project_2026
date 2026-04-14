@@ -15,9 +15,8 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 
 **MVP:**
 - [ ] Logic: Add different types of creatures to the grid
+- [ ] Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive? 
 - [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
-- [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
-  - Possibly change to using the strategy pattern? (w/ one set of strategies for how alive/dead is counted, and another set of strategies for how )
 - [ ] Grading: Ask if the facade pattern is sufficient for counting as a fourth pattern
 - [ ] Logic: Write tests for everything
 - [X] ~~Logic: Figure out why GameController thread only works when printing text. (???)~~
@@ -26,8 +25,10 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 - [X] ~~Logic & UI: Make UI grid cells dynamically editable instead of hard-coded~~
 - [X] ~~UI: Create an actual grid UI~~
 
-**Stretch Goals:** 
+**Stretch Goals:**
 - [ ] Logic: Add a make random board button w/ input options (use the builder pattern for this? ( ô.ô )
+- [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
+  - Possibly change to using the strategy pattern? (w/ one set of strategies for how alive/dead is counted, and another set of strategies for how )
 - [ ] UI: Center the grid & make the UI dynamically resize.
 - [ ] UI: Replace the text entry x, y coordinates to edit cells with being able to click on the grid 
 - [ ] Logic: Make user interaction undo-able by setting up the command pattern & a queue system
