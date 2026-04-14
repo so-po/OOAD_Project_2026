@@ -49,12 +49,8 @@ public class GameViewer extends JFrame {
         pauseUnpauseButton.addActionListener(actionListener);
     }
 
-    public void setCellState(int x, int y, boolean alive) {
-        if (alive) {
-            this.cellColors[y][x] = Color.GREEN;
-        } else {
-            this.cellColors[y][x] = Color.RED;
-        }
+    public void setCellColor(int x, int y, Color color) {
+        this.cellColors[y][x] = color;
         this.repaint();
     }
 

@@ -16,6 +16,10 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 **MVP:**
 - [ ] Logic: Add different types of creatures to the grid
 - [ ] UI: Make the grid UI able to display different types of creatures (e.g., with different colors)
+- [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
+  - Possibly change to using the strategy pattern? (w/ one set of strategies for how alive/dead is counted, and another set of strategies for how )
+- [ ] Grading: Ask if the facade pattern is sufficient for counting as a fourth pattern
+- [ ] Logic: Write tests for everything
 - [X] ~~Logic: Figure out why GameController thread only works when printing text. (???)~~
 - [X] ~~UI: show whether the game is paused or unpaused~~
 - [X] ~~Design: Create a wrapper for the ConwayGame, GameController and GameViewer~~
@@ -23,9 +27,10 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 - [X] ~~UI: Create an actual grid UI~~
 
 **Stretch Goals:** 
+- [ ] Logic: Add a make random board button w/ input options (use the builder pattern for this? ( ô.ô )
 - [ ] UI: Center the grid & make the UI dynamically resize.
-- [ ] Logic: Make different types of creatures handle neighbour alive/dead counting differently (i.e., does the creature consider alive creatures of other types to be 'alive' or 'dead'?)
 - [ ] UI: Replace the text entry x, y coordinates to edit cells with being able to click on the grid 
+- [ ] Logic: Make user interaction undo-able by setting up the command pattern & a queue system
 
 # Mid-Project Review Requirements:
 

@@ -3,6 +3,7 @@ package conwaygame.Game;
 import conwaygame.creatures.AbstractCreature;
 import conwaygame.creatures.CreatureFactory;
 
+import java.awt.*;
 import java.util.Random;
 
 public class Grid {
@@ -16,7 +17,6 @@ public class Grid {
 
 
     public Grid(int width, int height) throws Exception {
-
 
         if (width <= 0 || height <= 0) {
             throw new Exception("Bad grid width & height input.");
@@ -96,21 +96,18 @@ public class Grid {
         if (isCellAlive(x, y-1)) {count++; }
         if (isCellAlive(x+1, y-1)) {count++; }
 
-//
-//        for (int x = -1; x <= 1; x++) {
-//            for (int y = -1; y <= 1; y++) {
-//                int neighbourX = x+x;
-//                int neighbourY = y+y;
-//                if (isCellAlive(neighbourX, neighbourY)) {
-//                    count++;
-//                }
-//            }
-//        }
-
         return count;
     }
 
-    public boolean isCellAlive(int x, int y) {
+    public Color getCellColor(int x, int y) { //TODO: does this break single responsibility principle?
+        if (isCellAlive(x, y)) {
+            return getCell(x, y).getAliveColor();
+        } else {
+            return getCell(x, y).getDeadColor();
+        }
+    }
+
+    protected boolean isCellAlive(int x, int y) {
         return cellExists(x, y) && getCell(x, y).isAlive();
     }
 

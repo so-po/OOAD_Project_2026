@@ -29,11 +29,7 @@ public class GameController {
                     return; //just ignore incorrect input for now
                 }
                 gridModel.toggleCellState(x, y);
-                if (gridModel.isCellAlive(x, y)) {
-                    view.setCellState(x, y, true);
-                } else {
-                    view.setCellState(x, y, false);
-                }
+                updateCellColor(x, y);
             }
         });
 
@@ -45,12 +41,15 @@ public class GameController {
         });
     }
 
+    private void updateCellColor(int x, int y) {
+        view.setCellColor(x, y, gridModel.getCellColor(x, y));
+    }
 
     private void playOneTurnAndUpdateView() {
         gridModel.playTurn();
         for (int x = 0; x < gridModel.GRID_COLUMNS; x++) {
             for (int y = 0; y < gridModel.GRID_ROWS; y++) {
-                view.setCellState(x, y, gridModel.isCellAlive(x, y));
+                updateCellColor(x, y);
             }
         }
     }

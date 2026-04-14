@@ -1,5 +1,7 @@
 package conwaygame.creatures;
 
+import java.awt.Color;
+
 public class DefaultCreature extends AbstractCreature {
 
     int getMinimumNeighbours() {
@@ -14,4 +16,7 @@ public class DefaultCreature extends AbstractCreature {
         return 3;
     }
 
+    public Color getAliveColor() {
+        return Color.GREEN;
+    }
 }

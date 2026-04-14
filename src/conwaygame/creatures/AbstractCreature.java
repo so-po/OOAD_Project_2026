@@ -1,5 +1,7 @@
 package conwaygame.creatures;
 
+import java.awt.Color;
+
 public abstract class AbstractCreature {
     //TEMPLATE PATTERN
     private boolean isAlive = false;
@@ -30,4 +32,9 @@ public abstract class AbstractCreature {
     abstract int getMaxNeighbours();
     abstract int getResurrectionNeighbourCount();
 
+    public Color getDeadColor() {
+        return Color.RED;
+    }
+
+    public abstract Color getAliveColor();
 }
