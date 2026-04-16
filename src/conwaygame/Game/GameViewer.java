@@ -14,7 +14,7 @@ public class GameViewer extends JFrame {
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
     JLabel gamePausedLabel = new JLabel("");
-    JLabel currentlySelectedCreatureType = new JLabel("Currently Selected Creature: ");
+    JLabel currentlySelectedCreatureLabel = new JLabel("Selected: explosive");
     JButton setDefaultCreature = new JButton("Default");
     JButton setExplosiveCreature = new JButton("Explosive");
     JButton setScarcityCreature = new JButton("Scarcity");
@@ -27,7 +27,7 @@ public class GameViewer extends JFrame {
 
         JPanel mainPanel = new JPanel();
         gamePanel = new GamePanel(width, height);
-        JPanel controlPanel = new JPanel(new GridLayout(7, 2));
+        JPanel controlPanel = new JPanel(new GridLayout(8, 2));
         mainPanel.add(gamePanel);
         controlPanel.add(gamePausedLabel);
         controlPanel.add(pauseUnpauseButton);
@@ -36,12 +36,16 @@ public class GameViewer extends JFrame {
         controlPanel.add(yCoordLabel);
         controlPanel.add(yCoordInput);
         controlPanel.add(toggleCellStateButton);
+
+
         controlPanel.add(new JLabel(""));
-        controlPanel.add(currentlySelectedCreatureType);
+        controlPanel.add(currentlySelectedCreatureLabel);
+//        controlPanel.add(currentlySelectedCreatureType);
         controlPanel.add(new JLabel(""));
         controlPanel.add(setDefaultCreature);
         controlPanel.add(setExplosiveCreature);
         controlPanel.add(setScarcityCreature);
+
         controlPanel.add(new JLabel("")); //this is just here for spacing
 
         mainPanel.add(controlPanel);
@@ -54,6 +58,14 @@ public class GameViewer extends JFrame {
 
     public void setDefaultCreatureListener(ActionListener actionListener){
         setDefaultCreature.addActionListener(actionListener);
+    }
+
+    public void setExplosiveCreatureListener(ActionListener actionListener){
+        setExplosiveCreature.addActionListener(actionListener);
+    }
+
+    public void setScarcityCreatureListener(ActionListener actionListener){
+        setScarcityCreature.addActionListener(actionListener);
     }
 
     public void toggleCellStateListener(ActionListener actionListener){

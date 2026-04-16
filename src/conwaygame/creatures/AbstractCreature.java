@@ -8,13 +8,25 @@ public abstract class AbstractCreature {
 
     public final void setAliveStateBasedOnNeighbours(int numberOfNeighbours) {
         //Kill or resurrect the cell given its number of neighbours
-        if (isAlive && (numberOfNeighbours < getMinimumNeighbours() || numberOfNeighbours > getMaxNeighbours())) {
+        if (!isDead() && (numberOfNeighbours < getMinimumNeighbours() || numberOfNeighbours > getMaxNeighbours())) {
                 this.kill();
 
         } else if (numberOfNeighbours == getResurrectionNeighbourCount()) {
             this.resurrect();
         }
     }
+
+    public final int isAliveStateBasedOnNeighbours(int numberOfNeighbours) {
+        //Kill or resurrect the cell given its number of neighbours
+        if (!isDead() && (numberOfNeighbours < getMinimumNeighbours() || numberOfNeighbours > getMaxNeighbours())) {
+            return 0; //kill
+        } else if (numberOfNeighbours == getResurrectionNeighbourCount()) {
+            return 1; //revive
+        }
+        return -1; //do nothing
+    }
+
+
 
     public boolean isAlive() {
         return isAlive;
@@ -41,4 +53,5 @@ public abstract class AbstractCreature {
     public boolean isDefault(){return false;}
     public boolean isExplosive(){return false;}
     public boolean isScarcity(){return false;}
+    public boolean isDead(){return false;}
 }

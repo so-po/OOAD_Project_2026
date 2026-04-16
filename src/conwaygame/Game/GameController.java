@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 
 public class GameController {
-
     Grid gridModel;
     GameViewer view;
     RunGameTask runGameTask;
@@ -18,12 +17,26 @@ public class GameController {
         runGameTask.start();
         playOneTurnAndUpdateView(); //plays one turn to load in the grid
 
-//        this.view.setDefaultCreatureListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e){
-////                runGameTask.setCreatureType(gridModel.creatureFactory);
-//            }
-//        });
+        this.view.setDefaultCreatureListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                runGameTask.setCreatureType("DEFAULT");
+            }
+        });
+
+        this.view.setExplosiveCreatureListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                runGameTask.setCreatureType("EXPLOSIVE");
+            }
+        });
+
+        this.view.setScarcityCreatureListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                runGameTask.setCreatureType("SCARCITY");
+            }
+        });
 
         this.view.toggleCellStateListener(new ActionListener() {
             @Override
@@ -35,7 +48,7 @@ public class GameController {
                 } catch (NumberFormatException ex) {
                     return; //just ignore incorrect input for now
                 }
-                gridModel.toggleCellState(x, y);
+                gridModel.toggleCellState(x, y, runGameTask.getCreatureType());
                 updateCellColor(x, y);
             }
         });
@@ -63,10 +76,12 @@ public class GameController {
 
     class RunGameTask extends Thread {
         boolean paused = true;
+        String selectedType = "DEFAULT";
 
         public void run() {
             while (true) { //TODO: is this a problem? need to kill this thread?
                 view.gamePausedLabel.setText("Game Paused");
+                view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
                 while(!paused) {
                     view.gamePausedLabel.setText("Game Unpaused");
                     playOneTurnAndUpdateView();
@@ -83,7 +98,8 @@ public class GameController {
         public void togglePaused() {
             paused = !paused;
         }
-//        public void setCreatureType(Cell new) {selectedCreatureType = type;}
+        public void setCreatureType(String type) {selectedType = type;}
+        public String getCreatureType() {return selectedType;}
 
     }
 
