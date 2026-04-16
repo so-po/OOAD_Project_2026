@@ -36,18 +36,13 @@ public class GameViewer extends JFrame {
         controlPanel.add(yCoordLabel);
         controlPanel.add(yCoordInput);
         controlPanel.add(toggleCellStateButton);
-
-
         controlPanel.add(new JLabel(""));
         controlPanel.add(currentlySelectedCreatureLabel);
-//        controlPanel.add(currentlySelectedCreatureType);
         controlPanel.add(new JLabel(""));
         controlPanel.add(setDefaultCreature);
         controlPanel.add(setExplosiveCreature);
         controlPanel.add(setScarcityCreature);
-
         controlPanel.add(new JLabel("")); //this is just here for spacing
-
         mainPanel.add(controlPanel);
         cellColors = new Color[height][width];
         this.add(mainPanel);

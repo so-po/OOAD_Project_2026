@@ -16,10 +16,10 @@ public class ExplosiveCreature extends AbstractCreature {
         return 1;
     }
 
-    public Color getAliveColor() {
+    public Color getColor() {
         return Color.ORANGE;
     }
 
     @Override
-    public boolean isExplosive() {return true;}
+    public boolean isExplosive() { return true; }
 }

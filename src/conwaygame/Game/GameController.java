@@ -97,11 +97,9 @@ public class GameController {
             }
         }
 
-        public void togglePaused() {
-            paused = !paused;
-        }
-        public void setCreatureType(String type) {selectedType = type;}
-        public String getCreatureType() {return selectedType;}
+        public void togglePaused() { paused = !paused; }
+        public void setCreatureType(String type) { selectedType = type; }
+        public String getCreatureType() { return selectedType; }
 
     }
 

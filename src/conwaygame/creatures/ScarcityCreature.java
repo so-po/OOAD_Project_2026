@@ -12,14 +12,12 @@ public class ScarcityCreature extends AbstractCreature {
         return 2;
     }
 
-    int getResurrectionNeighbourCount() {
-        return 1;
-    }
+    int getResurrectionNeighbourCount() { return 1; }
 
-    public Color getAliveColor() {
+    public Color getColor() {
         return Color.BLUE;
     }
 
     @Override
-    public boolean isScarcity() {return true;}
+    public boolean isScarcity() { return true; }
 }

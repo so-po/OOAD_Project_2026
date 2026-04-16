@@ -16,10 +16,10 @@ public class DeadCreature extends AbstractCreature {
         return 3;
     }
 
-    public Color getAliveColor() {
+    public Color getColor() {
         return Color.RED;
     }
 
     @Override
-    public boolean isDead() {return true;}
+    public boolean isDead() { return true; }
 }
