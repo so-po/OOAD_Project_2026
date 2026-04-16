@@ -79,6 +79,7 @@ public class GameController {
         String selectedType = "DEFAULT";
 
         public void run() {
+
             while (true) { //TODO: is this a problem? need to kill this thread?
                 view.gamePausedLabel.setText("Game Paused");
                 view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
@@ -87,6 +88,7 @@ public class GameController {
                     playOneTurnAndUpdateView();
                     try {
                         sleep(500);
+                        view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
                     } catch (InterruptedException e) {
                         //just ignore this exception instead of throwing an exception like:
                         //throw new RuntimeException(e);
