@@ -2,15 +2,15 @@ package conwaygame.Game;
 
 import org.junit.jupiter.api.Test;
 
-public class GridTest {
+public class DefaultCreatureTest {
 
     //Test default creature rules:
     //Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
     @Test
     public void testUnderpopulation() throws Exception{
         Grid grid = new Grid(3, 3);
-        grid.makeCellAlive(2, 2);
-        grid.makeCellAlive(1, 2);
+        grid.toggleCellState(2, 2, "DEFAULT");
+        grid.toggleCellState(1, 2, "DEFAULT");
         grid.playTurn(); //both cells should die
         assert(!grid.isCellAlive(2, 2));
         assert(!grid.isCellAlive(1, 2));
@@ -19,9 +19,9 @@ public class GridTest {
     @Test
     public void testLiveToNextGen() throws Exception{
         Grid grid = new Grid(3, 3);
-        grid.makeCellAlive(2, 2);
-        grid.makeCellAlive(1, 2);
-        grid.makeCellAlive(2, 1);
+        grid.toggleCellState(2, 2, "DEFAULT");
+        grid.toggleCellState(1, 2, "DEFAULT");
+        grid.toggleCellState(2, 1, "DEFAULT");
         grid.playTurn(); //all made cells should be alive after turn
         assert(grid.isCellAlive(2, 2));
         assert(grid.isCellAlive(1, 2));
@@ -31,11 +31,11 @@ public class GridTest {
     @Test
     public void testOverpopulation() throws Exception{
         Grid grid = new Grid(3, 3);
-        grid.makeCellAlive(1, 1);//this cell is surrounded by 4 neighbors
-        grid.makeCellAlive(0, 1);
-        grid.makeCellAlive(1, 0);
-        grid.makeCellAlive(1, 2);
-        grid.makeCellAlive(2, 1);
+        grid.toggleCellState(1, 1, "DEFAULT");//this cell is surrounded by 4 neighbors
+        grid.toggleCellState(0, 1, "DEFAULT");
+        grid.toggleCellState(1, 0, "DEFAULT");
+        grid.toggleCellState(1, 2, "DEFAULT");
+        grid.toggleCellState(2, 1, "DEFAULT");
         grid.playTurn(); //cell(2,2) should die after turn is played
         grid.playTurn();
         assert(!grid.isCellAlive(1, 1));
@@ -44,9 +44,9 @@ public class GridTest {
     @Test
     public void testBirth() throws Exception{
         Grid grid = new Grid(3, 3);
-        grid.makeCellAlive(2, 2);
-        grid.makeCellAlive(1, 2);
-        grid.makeCellAlive(2, 1);
+        grid.toggleCellState(2, 2, "DEFAULT");
+        grid.toggleCellState(1, 2, "DEFAULT");
+        grid.toggleCellState(2, 1, "DEFAULT");
         grid.playTurn(); //cell(1,1) should be born after turn is played
         assert(grid.isCellAlive(1, 1));
     }
