@@ -14,11 +14,13 @@ Red cells are dead, and green cells are alive. Unpause the game to see it runnin
 # TODO: 
 
 **MVP:**
+- [ ] Grading: Ask about whether our use of strategy & template pattern together counts as two patterns or not
+- [ ] Clean-up: remove magic strings from creature types in backend logic (make creature type enum?)
+- [ ] Clean-up: Unify naming of revive/ressurect
+- [ ] Logic: Write tests for everything
 - [X] ~~Logic: Add different types of creatures to the grid~~
 - [X] ~~Logic: figure out what to do about default cell-- make all cells the 'DefaultCreature' or have some sort of 'DeadCreature' that never comes alive?~~
 - [X] ~~UI: Make the grid UI able to display different types of creatures (e.g., with different colors)~~
-- [ ] Grading: Ask if the facade pattern is sufficient for counting as a fourth pattern
-- [ ] Logic: Write tests for everything
 - [X] ~~Logic: Figure out why GameController thread only works when printing text. (???)~~
 - [X] ~~UI: show whether the game is paused or unpaused~~
 - [X] ~~Design: Create a wrapper for the ConwayGame, GameController and GameViewer~~
