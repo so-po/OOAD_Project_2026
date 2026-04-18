@@ -5,6 +5,8 @@ import conwaygame.creatures.Strategy;
 import conwaygame.creatures.StrategyFactory;
 
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Grid {
@@ -60,91 +62,24 @@ public class Grid {
     }
 
     public void playTurn() {
-        for (int j = 0; j < GRID_ROWS; j++) {
-            for (int i = 0; i < GRID_COLUMNS; i++) {
-                Creature creature = getCell(i, j);
-                int status = creature.isAliveStateBasedOnNeighbours(countAliveNeighbors(i, j));
-                if (status == 0){
-                    creature.kill();
-                }
-                else if(status == 1){
-                    creature.setStrategy(determineResurrectionType(i, j));
-                }
+        for (int y = 0; y < GRID_ROWS; y++) {
+            for (int x = 0; x < GRID_COLUMNS; x++) {
+                Creature creature = getCell(x, y);
+                creature.setStrategyBasedOnNeighbors(getCellNeighbors(x, y));
             }
         }
     }
 
-    private Strategy determineResurrectionType(int x, int y){
-        int defaultCount = countDefaultNeighbors(x,y);
-        int explosiveCount = countExplosiveNeighbors(x,y);
-        int scarcityCount = countScarcityNeighbors(x,y);
-        String largestType = "DEFAULT";
-        int maxCount = defaultCount;
-        if (explosiveCount > maxCount) {
-            maxCount = explosiveCount;
-            largestType = "EXPLOSIVE";
+    private List<Creature> getCellNeighbors(int x, int y) {
+        ArrayList<Creature> neighbors = new ArrayList<>();
+        for (int x_offset = -1; x_offset<=1; x_offset++) {
+            for (int y_offset = -1; y_offset <=1; y_offset++) {
+                if (isCellAlive(x+x_offset, y+y_offset) && !(x_offset==0 && y_offset==0)) {
+                    neighbors.add(getCell(x+x_offset, y+y_offset));
+                }
+            }
         }
-        if (scarcityCount > maxCount) {
-            largestType = "SCARCITY";
-        }
-        return strategyFactory.getStrategy(largestType);
-    }
-
-    private int countAliveNeighbors(int x, int y) {
-        int count = 0;
-        //TODO: make more DRY
-        if (isCellAlive(x-1, y+1)) {count++; }
-        if (isCellAlive(x, y+1)) {count++; }
-        if (isCellAlive(x+1, y+1)) {count++; }
-        if (isCellAlive(x-1, y)) {count++; }
-        if (isCellAlive(x+1, y)) {count++; }
-        if (isCellAlive(x-1, y-1)) {count++; }
-        if (isCellAlive(x, y-1)) {count++; }
-        if (isCellAlive(x+1, y-1)) {count++; }
-
-        return count;
-    }
-
-    private int countDefaultNeighbors(int x, int y){
-        int count = 0;
-        if (isCellDefault(x-1, y+1)) {count++; }
-        if (isCellDefault(x, y+1)) {count++; }
-        if (isCellDefault(x+1, y+1)) {count++; }
-        if (isCellDefault(x-1, y)) {count++; }
-        if (isCellDefault(x+1, y)) {count++; }
-        if (isCellDefault(x-1, y-1)) {count++; }
-        if (isCellDefault(x, y-1)) {count++; }
-        if (isCellDefault(x+1, y-1)) {count++; }
-
-        return count;
-    }
-
-    private int countExplosiveNeighbors(int x, int y) {
-        int count = 0;
-        if (isCellExplosive(x-1, y+1)) { count++; }
-        if (isCellExplosive(x,   y+1)) { count++; }
-        if (isCellExplosive(x+1, y+1)) { count++; }
-        if (isCellExplosive(x-1, y  )) { count++; }
-        if (isCellExplosive(x+1, y  )) { count++; }
-        if (isCellExplosive(x-1, y-1)) { count++; }
-        if (isCellExplosive(x,   y-1)) { count++; }
-        if (isCellExplosive(x+1, y-1)) { count++; }
-
-        return count;
-    }
-
-    private int countScarcityNeighbors(int x, int y) {
-        int count = 0;
-        if (isCellScarcity(x-1, y+1)) { count++; }
-        if (isCellScarcity(x,   y+1)) { count++; }
-        if (isCellScarcity(x+1, y+1)) { count++; }
-        if (isCellScarcity(x-1, y  )) { count++; }
-        if (isCellScarcity(x+1, y  )) { count++; }
-        if (isCellScarcity(x-1, y-1)) { count++; }
-        if (isCellScarcity(x,   y-1)) { count++; }
-        if (isCellScarcity(x+1, y-1)) { count++; }
-
-        return count;
+        return neighbors;
     }
 
     public Color getCellColor(int x, int y) { //TODO: does this break single responsibility principle?
