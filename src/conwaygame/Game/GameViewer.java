@@ -8,9 +8,9 @@ public class GameViewer extends JFrame {
 
     GamePanel gamePanel;
     JLabel xCoordLabel = new JLabel("x: ");
-    JTextField xCoordInput = new JTextField("");
+    JTextField xCoordInput = new JTextField("0");
     JLabel yCoordLabel = new JLabel("y: ");
-    JTextField yCoordInput = new JTextField("");
+    JTextField yCoordInput = new JTextField("0");
     JButton toggleCellStateButton = new JButton("toggle cell state (alive/dead)");
     JButton pauseUnpauseButton = new JButton("pause/unpause");
     JLabel gamePausedLabel = new JLabel("");

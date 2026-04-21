@@ -3,8 +3,6 @@ package conwaygame.Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.lang.Thread.sleep;
-
 public class GameController {
     Grid gridModel;
     GameViewer view;
@@ -15,7 +13,7 @@ public class GameController {
         this.view = view;
         this.runGameTask = new RunGameTask();
         runGameTask.start();
-        playOneTurnAndUpdateView(); //plays one turn to load in the grid
+        updateView(); //plays one turn to load in the grid
 
         this.view.setDefaultCreatureListener(new ActionListener() {
             @Override
@@ -65,8 +63,7 @@ public class GameController {
         view.setCellColor(x, y, gridModel.getCellColor(x, y));
     }
 
-    private void playOneTurnAndUpdateView() {
-        gridModel.playTurn();
+    private void updateView() {
         for (int x = 0; x < gridModel.GRID_COLUMNS; x++) {
             for (int y = 0; y < gridModel.GRID_ROWS; y++) {
                 updateCellColor(x, y);
@@ -85,7 +82,9 @@ public class GameController {
                 view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
                 while(!paused) {
                     view.gamePausedLabel.setText("Game Unpaused");
-                    playOneTurnAndUpdateView();
+
+                    gridModel.playTurn();
+                    updateView();
                     try {
                         sleep(500);
                         view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
