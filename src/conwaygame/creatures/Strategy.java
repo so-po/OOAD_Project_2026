@@ -14,6 +14,7 @@ public abstract class Strategy {
     public boolean isExplosive(){ return getType() == EXPLOSIVE; }
     public boolean isScarcity(){ return getType() == SCARCITY; }
 
-    abstract public Color getColor();
+    abstract public Color getAliveColor();
+    abstract public Color getDeadColor();
 
 }

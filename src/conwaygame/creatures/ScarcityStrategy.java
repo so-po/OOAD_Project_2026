@@ -14,8 +14,12 @@ public class ScarcityStrategy extends Strategy {
 
     int getResurrectionNeighbourCount() { return 1; }
 
-    public Color getColor() {
+    public Color getAliveColor() {
         return Color.BLUE;
+    }
+
+    public Color getDeadColor() {
+        return new Color(0, 25, 50);
     }
 
     public CreatureType getType() {

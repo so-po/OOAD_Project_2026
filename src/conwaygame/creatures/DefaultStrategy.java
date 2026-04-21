@@ -12,8 +12,13 @@ public class DefaultStrategy extends Strategy {
 
 
     @Override
-    public Color getColor() {
+    public Color getAliveColor() {
         return Color.GREEN;
+    }
+
+    @Override
+    public Color getDeadColor() {
+        return new Color(25, 50, 0);
     }
 
     public CreatureType getType() {

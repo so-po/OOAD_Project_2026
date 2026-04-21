@@ -23,7 +23,7 @@ public class GameViewer extends JFrame {
     public GameViewer(int width, int height) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setTitle("Conway's Game of Life");
+        this.setTitle("Conway's Game of Lives");
 
         JPanel mainPanel = new JPanel();
         gamePanel = new GamePanel(width, height);

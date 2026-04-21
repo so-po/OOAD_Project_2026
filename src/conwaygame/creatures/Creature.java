@@ -101,9 +101,9 @@ public class Creature {
 
     public Color getColor() {
         if (this.isAlive()) {
-            return strategy.getColor();
+            return strategy.getAliveColor();
         } else {
-            return Color.RED;
+            return strategy.getDeadColor();
         }
     }
 
