@@ -18,11 +18,15 @@ public class Creature {
         int aliveNeighborCount = countAliveCreatures(neighbors);
         if (isAlive() && (imTooLonely(aliveNeighborCount) || imOverCrowded(aliveNeighborCount))) {
             this.kill();
-        } else if (aliveNeighborCount == this.strategy.getResurrectionNeighbourCount()) {
+        } else if (iHaveEnoughNeighborsToRevive(aliveNeighborCount)) {
             //revive & decide what creature to revive as
             this.determineStrategyToResurrectWith(neighbors);
         }
 
+    }
+
+    private boolean iHaveEnoughNeighborsToRevive(int aliveNeighborCount) {
+        return (aliveNeighborCount == this.strategy.getResurrectionNeighbourCount());
     }
 
     private boolean imTooLonely(int aliveNeighborCount) {
