@@ -26,4 +26,15 @@ public class CreatureResurrectionTypeTest {
         assert(grid.isCellAlive(1, 1));
         assert(grid.isCellExplosive(1, 1));
     }
+
+    @Test
+    public void testScarcityBirth() throws Exception{
+        Grid grid = new Grid(3, 3);
+        grid.toggleCellState(0, 0, "SCARCITY");
+        grid.toggleCellState(0, 0, "SCARCITY"); //make cell dead
+        grid.toggleCellState(0, 1, "DEFAULT");
+        grid.playTurn(); //cell(0, 0) should turn into an alive default cell after turn is played
+        assert(grid.isCellAlive(0, 0));
+        assert(grid.isCellDefault(0, 0));
+    }
 }
