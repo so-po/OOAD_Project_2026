@@ -12,4 +12,11 @@ public class ConwayGame { //Facade for Game MVC
         gameViewer.setVisible(true);
     }
 
+    public ConwayGame(Grid injectedGrid) throws Exception {
+        Grid grid = injectedGrid;
+        GameViewer gameViewer = new GameViewer(grid.getWidth(), grid.getHeight());
+        GameController game = new GameController(grid, gameViewer);
+        gameViewer.setVisible(true);
+    }
+
 }

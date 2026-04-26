@@ -167,5 +167,6 @@ public class Grid {
         return cellExists(x, y) && getCell(x, y).isScarcity();
     }
 
-
+    public Integer getHeight() {return GRID_ROWS;}
+    public Integer getWidth() {return GRID_COLUMNS;}
 }
