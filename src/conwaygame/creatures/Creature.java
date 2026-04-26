@@ -12,6 +12,20 @@ public class Creature {
     StrategyFactory strategyFactory = new StrategyFactory();
     boolean alive = false;
 
+    public Creature() {
+        this.strategy = strategyFactory.getDefaultStrategy();
+    }
+
+    public Creature(Strategy strategy) {
+        this();
+        this.strategy = strategy;
+    }
+
+    public Creature(StrategyFactory strategyFactory) {
+        this.strategyFactory = strategyFactory;
+        this.strategy = strategyFactory.getDefaultStrategy();
+    }
+
     public void setStateBasedOnNeighbors(List<Creature> neighbors) {
         //Kill or revive the cell given its number of neighbours
 
@@ -74,14 +88,6 @@ public class Creature {
             }
         }
         return creatureCount;
-    }
-
-    public Creature(Strategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public Creature() {
-        this.strategy = strategyFactory.getDefaultStrategy();
     }
 
     public void makeAlive() {

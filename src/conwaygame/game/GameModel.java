@@ -19,11 +19,11 @@ public class GameModel {
     //used for injecting creatures
     public record SpawnEntry(String type, int x, int y){}
 
-    public GameModel(int width, int height, ArrayList<SpawnEntry> spawnCreatureLocations) throws Exception {
+    public GameModel(int width, int height, ArrayList<SpawnEntry> spawnCreatureLocations, StrategyFactory strategyFactory) throws Exception {
         if (width <= 0 || height <= 0) {
             throw new Exception("Bad grid width & height input.");
         }
-
+        this.strategyFactory = strategyFactory;
         GRID_COLUMNS = width;
         GRID_ROWS = height;
 
@@ -67,6 +67,7 @@ public class GameModel {
         int gridWidth;
         int gridHeight;
         ArrayList<SpawnEntry> spawnCreatureLocations = new ArrayList<>();
+        StrategyFactory strategyFactory = new StrategyFactory();
 
         public GridBuilder() {}
 
@@ -91,11 +92,13 @@ public class GameModel {
             return this;
         }
 
+        public GridBuilder injectStrategyFactory(StrategyFactory strategyFactory) {
+            this.strategyFactory = strategyFactory;
+            return this;
+        }
+
         public GameModel build() throws Exception {
-            if (gridWidth <= 0 || gridHeight <= 0) {
-                throw new Exception("Grid width or height are invalid or not set. Please use setDimensions() with valid dimensions.");
-            }
-            return new GameModel(gridWidth, gridHeight, spawnCreatureLocations);
+            return new GameModel(gridWidth, gridHeight, spawnCreatureLocations, strategyFactory);
         }
     }
 
