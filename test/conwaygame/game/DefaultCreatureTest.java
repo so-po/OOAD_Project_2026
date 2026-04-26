@@ -1,4 +1,4 @@
-package conwaygame.Game;
+package conwaygame.game;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ public class DefaultCreatureTest {
     //Rule 1: Any live cell with fewer than two live neighbours dies, as if by underpopulation.
     @Test
     public void testUnderpopulation() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "DEFAULT");
         grid.toggleCellState(1, 2, "DEFAULT");
         grid.playTurn(); //both cells should die
@@ -18,7 +18,7 @@ public class DefaultCreatureTest {
     //Rule 2: Any live cell with two or three live neighbours lives on to the next generation.
     @Test
     public void testLiveToNextGen() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "DEFAULT");
         grid.toggleCellState(1, 2, "DEFAULT");
         grid.toggleCellState(2, 1, "DEFAULT");
@@ -30,7 +30,7 @@ public class DefaultCreatureTest {
     //Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation.
     @Test
     public void testOverpopulation() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(1, 1, "DEFAULT");//this cell is surrounded by 4 neighbors
         grid.toggleCellState(0, 1, "DEFAULT");
         grid.toggleCellState(1, 0, "DEFAULT");
@@ -43,7 +43,7 @@ public class DefaultCreatureTest {
     //Rule 4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     @Test
     public void testBirth() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "DEFAULT");
         grid.toggleCellState(1, 2, "DEFAULT");
         grid.toggleCellState(2, 1, "DEFAULT");

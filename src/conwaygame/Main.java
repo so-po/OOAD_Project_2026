@@ -1,5 +1,5 @@
 package conwaygame;
-import conwaygame.Game.ConwayGame;
+import conwaygame.game.ConwayGame;
 
 public class Main {
 

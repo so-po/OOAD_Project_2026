@@ -1,4 +1,4 @@
-package conwaygame.Game;
+package conwaygame.game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +79,6 @@ public class GameViewer extends JFrame {
     class GamePanel extends JPanel{
 
         //SCREEN SETTINGS
-        //TODO: clean this up
         final int originalTileSize = 16; //16x16 sprite size
         final int scale = 3;
 

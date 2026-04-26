@@ -1,19 +1,19 @@
-package conwaygame.Game;
+package conwaygame.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameController {
-    Grid gridModel;
+    GameModel gridModel;
     GameViewer view;
     RunGameTask runGameTask;
 
-    public GameController(Grid model, GameViewer view) {
+    public GameController(GameModel model, GameViewer view) {
         this.gridModel = model;
         this.view = view;
         this.runGameTask = new RunGameTask();
         runGameTask.start();
-        updateView(); //plays one turn to load in the grid
+        updateView();
 
         this.view.setDefaultCreatureListener(new ActionListener() {
             @Override
@@ -77,14 +77,14 @@ public class GameController {
 
         public void run() {
 
-            while (true) { //TODO: is this a problem? need to kill this thread?
+            while (true) {
                 view.gamePausedLabel.setText("Game Paused");
                 view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);
                 while(!paused) {
                     view.gamePausedLabel.setText("Game Unpaused");
-
                     gridModel.playTurn();
                     updateView();
+
                     try {
                         sleep(500);
                         view.currentlySelectedCreatureLabel.setText("Selected: " + selectedType);

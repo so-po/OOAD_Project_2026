@@ -1,4 +1,4 @@
-package conwaygame.Game;
+package conwaygame.game;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ public class CreatureResurrectionTypeTest {
 
     @Test
     public void testDefaultBirth() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "DEFAULT");
         grid.toggleCellState(1, 2, "DEFAULT");
         grid.toggleCellState(2, 1, "EXPLOSIVE");
@@ -18,7 +18,7 @@ public class CreatureResurrectionTypeTest {
 
     @Test
     public void testExplosiveBirth() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(2, 2, "EXPLOSIVE");
         grid.toggleCellState(1, 2, "EXPLOSIVE");
         grid.toggleCellState(2, 1, "DEFAULT");
@@ -29,7 +29,7 @@ public class CreatureResurrectionTypeTest {
 
     @Test
     public void testScarcityBirth() throws Exception{
-        Grid grid = new Grid(3, 3);
+        GameModel grid = new GameModel(3, 3);
         grid.toggleCellState(0, 0, "SCARCITY");
         grid.toggleCellState(0, 0, "SCARCITY"); //make cell dead
         grid.toggleCellState(0, 1, "DEFAULT");

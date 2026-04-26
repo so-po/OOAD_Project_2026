@@ -1,28 +1,25 @@
-package conwaygame.Game;
+package conwaygame.game;
 
 import conwaygame.creatures.Creature;
 import conwaygame.creatures.CreatureType;
 import conwaygame.creatures.StrategyFactory;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Grid {
+public class GameModel {
 
     final int GRID_COLUMNS;
     final int GRID_ROWS;
 
     Creature[][] cells;
     StrategyFactory strategyFactory = new StrategyFactory();
-    Random random;
 
     //used for injecting creatures
     public record SpawnEntry(String type, int x, int y){}
 
-    public Grid(int width, int height, ArrayList<SpawnEntry> spawnCreatureLocations) throws Exception {
+    public GameModel(int width, int height, ArrayList<SpawnEntry> spawnCreatureLocations) throws Exception {
         if (width <= 0 || height <= 0) {
             throw new Exception("Bad grid width & height input.");
         }
@@ -30,7 +27,6 @@ public class Grid {
         GRID_COLUMNS = width;
         GRID_ROWS = height;
 
-        random = new Random();
         cells = new Creature[GRID_ROWS][GRID_COLUMNS];
 
         for (Creature[] row : cells) { //initialize list to be full of dead cells
@@ -42,12 +38,11 @@ public class Grid {
         //spawn based on injected creatures
         for (SpawnEntry creature : spawnCreatureLocations){
             toggleCellState(creature.x, creature.y, creature.type);
-//            getCell(creature.x,creature.y);
             reviveCell(creature.x,creature.y);
         }
     }
 
-    public Grid(int width, int height) throws Exception {
+    public GameModel(int width, int height) throws Exception {
         if (width <= 0 || height <= 0) {
             throw new Exception("Bad grid width & height input.");
         }
@@ -55,7 +50,6 @@ public class Grid {
         GRID_COLUMNS = width;
         GRID_ROWS = height;
 
-        random = new Random();
         cells = new Creature[GRID_ROWS][GRID_COLUMNS];
 
         for (Creature[] row : cells) { //initialize list to be full of dead cells
@@ -97,9 +91,11 @@ public class Grid {
             return this;
         }
 
-        public Grid build() throws Exception {
-            return new Grid(gridWidth, gridHeight, spawnCreatureLocations);
-            //TODO: if dimensions not set, make dimensions based on the existing cells
+        public GameModel build() throws Exception {
+            if (gridWidth <= 0 || gridHeight <= 0) {
+                throw new Exception("Grid width or height are invalid or not set. Please use setDimensions() with valid dimensions.");
+            }
+            return new GameModel(gridWidth, gridHeight, spawnCreatureLocations);
         }
     }
 
@@ -149,7 +145,7 @@ public class Grid {
         return neighbors;
     }
 
-    public Color getCellColor(int x, int y) { //TODO: does this break single responsibility principle?
+    public Color getCellColor(int x, int y) {
         return getCell(x, y).getColor();
     }
 
