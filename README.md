@@ -1,6 +1,8 @@
-# Conway's Game of Lives
+# Conway's Petri Dish
 
-This is a java app thar runs conway's game of life (https://conwaylife.com/), extended to include several different creatures that follow different rulesets.
+This is a java app that runs Conway's Game of Life, (https://conwaylife.com/), extended to include several different creatures that follow different rulesets, to see how they interact.
+
+![GamePlay-Screenshot.png](images/GamePlay-Screenshot.png)
 
 This is the final project for the class CSCI 4448, Object-Oriented Analysis and Design, created by **Melanie Porter** & **Sofia Poulsen**.
 
